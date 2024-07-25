@@ -1,0 +1,45 @@
+
+  @if(isLogin){
+  <div class="grid justify-center items-center" >
+    <h1 class="font-semibold text-3xl mb-3">Login</h1>
+    <form (ngSubmit)="onLogin()" class="space-y-2 font-semibold text-sm text-[#333]">
+      <div>
+        <label for="loginEmail">Email:</label>
+        <input type="email" class="border rounded-md p-2 w-full" id="loginEmail" (ngModel)="loginEmail" name="loginEmail" required>
+      </div>
+      <div>
+        <label for="loginPassword">Password:</label>
+        <input type="password" class="border rounded-md p-2 w-full" id="loginPassword" (ngModel)="loginPassword" name="loginPassword" required>
+      </div>
+      <button type="submit" class="btn bg-slate-400 py-2 px-4 rounded-sm w-full">Login</button>
+    </form>
+    <p class="text-sm text-[#333] mt-2">Don't have an account? <button (click)="showSignup()">Sign up here</button></p>
+
+  </div>
+}
+@else{
+  <div class="grid justify-center items-center  ">
+    <h1 class="font-semibold text-3xl mb-3">Signup</h1>
+    <form (ngSubmit)="onSignup()" class="space-y-2 font-semibold text-sm text-[#333]">
+      <div>
+        <label for="signupName">Name:</label>
+        <input type="text" id="signupName" placeholder="userName" class="border rounded-md p-2 w-full" (ngModel)="signupName" name="signupName" required>
+      </div>
+      <div>
+        <label for="signupEmail">Email:</label>
+        <input type="email" id="signupEmail" placeholder="user@example.com" class="border rounded-md p-2 w-full" (ngModel)="signupEmail" name="signupEmail" required>
+      </div>
+      <div>
+        <label for="signupPassword">Password:</label>
+        <input type="password" id="signupPassword" class="border rounded-md p-2 w-full" (ngModel)="signupPassword" name="signupPassword" required>
+      </div>
+      <div>
+        <label for="signupConfirmPassword">Confirm Password:</label>
+        <input type="password" id="signupConfirmPassword" class="border rounded-md p-2 w-full" (ngModel)="signupConfirmPassword" name="signupConfirmPassword" required>
+      </div>
+      <button type="submit" class="btn bg-slate-400 py-2 px-4 rounded-sm w-full">Signup</button>
+    </form>
+    <p class="text-sm text-[#333] mt-2">Already have an account? <button (click)="showLogin()">Log in here</button></p>
+  </div>
+}
+  

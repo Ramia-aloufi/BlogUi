@@ -1,10 +1,9 @@
 <section>
     <div class="container">
         <div class="grid grid-cols-4 gap-5">
-                <app-post-card></app-post-card>
-                <app-post-card></app-post-card>
-                <app-post-card></app-post-card>
-                <app-post-card></app-post-card>
+            @for (item of store.posts; track $index) {
+                <app-post-card [post]="item"></app-post-card>
+            }
         </div>
 
     </div>
