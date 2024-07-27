@@ -1,44 +1,34 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule, NgForm } from '@angular/forms';
 import { ApiStoreService } from '../../api/api.store.service';
+import { SidebarComponent } from "../sidebar/sidebar.component";
+import { PostFormComponent } from "../post-form/post-form.component";
+import { RouterOutlet, RouterModule, Router } from '@angular/router';
+import { Post } from '../../model/post';
 
 @Component({
   selector: 'app-posts',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, SidebarComponent, PostFormComponent,RouterOutlet,RouterModule],
   templateUrl: './posts.component.html',
   styleUrl: './posts.component.css'
 })
 export class PostsComponent  {
-  postForm: FormGroup;
 
+showForm  = false
 
+  constructor(protected store: ApiStoreService,private router: Router) {
 
-  constructor(private fb: FormBuilder, protected store: ApiStoreService,) {
-    this.postForm = this.fb.group({
-      name: ['', Validators.required],
-      content: ['', Validators.required],
-      categoryId: ['', Validators.required],
-      imageURL: ['', Validators.required]
-    });
+  }
+  onAdd(){
+    this.showForm = true
   }
 
-
-
-
-
-  onSubmit(): void {
-    if (this.postForm.valid) {
-      const post: any = this.postForm.value;
-      this.store.SubmitPost(post);
-    }
-  }
-  getCategoryName(categoryId: number): string {
-    const category = this.store.categories?.find(cat => cat.id === categoryId);
-    return category ? category.name : 'Unknown';
-  }
-  onEdit(post: any): void {
+  onEdit(post: Post): void {
     console.log(post);
+    this.store.editPost(post)
+    this.router.navigate(['/dashboard/posts/new']);
+
   }
   onDelete(id: number): void {
     this.store.deletePost(id)

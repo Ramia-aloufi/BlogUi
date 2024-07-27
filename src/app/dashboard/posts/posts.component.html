@@ -1,93 +1,56 @@
-<form
-  [formGroup]="postForm"
-  (ngSubmit)="onSubmit()"
-  class="max-w-md bg-white shadow-md rounded-lg p-6 mb-6 grid space-y-3"
->
-  <div>
-    <label for="name">Name</label>
-    <input
-      id="name"
-      formControlName="name"
-      class="border border-gray-300 rounded-md px-4 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-400"
-    />
-    @if(postForm.get('name')?.invalid && postForm.get('name')?.touched){
-    <div>Name is required.</div>
-    }
+<div class="grid grid-cols-[1fr,6fr] max-h-[80vh] overflow-hidden">
+  <app-sidebar></app-sidebar>
+  
+<div class="  px-4">
+  <div class="flex justify-between  my-6 ">
+    <h3 class="font-bold"> {{store.posts?.length}}Posts</h3>
+    <button routerLink="/dashboard/posts/new" class="py-2 px-4 bg-cyan-950 text-white rounded-md ">  New  <i class="fa-regular fa-square-plus"></i></button>
   </div>
 
-  <div>
-    <label for="content">Content</label>
-    <textarea
-      id="content"
-      formControlName="content"
-      class="border border-gray-300 rounded-md px-4 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-400"
-    >
-    </textarea>
-    @if(postForm.get('content')?.invalid && postForm.get('content')?.touched){
-    <div>Content is required.</div>
-    }
-  </div>
-
-  <div>
-    <label for="categoryId">Category</label>
-    <select id="categoryId" formControlName="categoryId">
-      @for (category of store.categories; track category.id) {
-      <option [value]="category.id">{{ category.name }}</option>
-      }
-    </select>
-    @if(postForm.get('categoryId')?.invalid &&
-    postForm.get('categoryId')?.touched){
-    <div>Category is required.</div>
-    }
-  </div>
-
-  <div>
-    <label for="imageURL">Image URL</label>
-    <input
-      id="imageURL"
-      formControlName="imageURL"
-      class="border border-gray-300 rounded-md px-4 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-400"
-    />
-
-    @if(postForm.get('imageURL')?.invalid && postForm.get('imageURL')?.touched){
-    <div>Image URL is required.</div>
-    }
-  </div>
-
-  <button
-    type="submit"
-    [disabled]="postForm.invalid"
-    class="btn bg-blue-500 text-white px-4 py-2 rounded-md cursor-pointer hover:bg-blue-600 transition duration-200"
-  >
-    Submit
-  </button>
-</form>
-<div class="w-full max-w-2xl bg-white shadow-md rounded-lg p-6">
-    <table class="min-w-full bg-white">
-        <thead>
-            <tr>
-                <th class="py-2 border-b">ID</th>
-                <th class="py-2 border-b">Name</th>
-                <th class="py-2 border-b">category</th>
-                <th class="py-2 border-b">imageUrl</th>
-                <th class="py-2 border-b">Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            @for (item of store.posts;track item.id){
-                <tr>
-                    <td class="py-2 border-b">{{item.id}}</td>
-                    <td class="py-2 border-b">{{item.name}}</td>
-                    <td class="py-2 border-b">{{ getCategoryName(item.categoryId) }}</td>
-                    <td class="py-2 border-b w-[200px] h-[200px]"><img src="{{item.imageUrl}}" alt="{{item.imageUrl}}"></td>
-                    
-
-                    <td class="py-2 border-b">
-                        <button (click)="onEdit(item)" class="btn bg-yellow-500 text-white px-2 py-1 rounded-md cursor-pointer hover:bg-yellow-600 transition duration-200">Edit</button>
-                        <button (click)="onDelete(item.id)" class="btn bg-red-500 text-white px-2 py-1 rounded-md cursor-pointer hover:bg-red-600 transition duration-200">Delete</button>
-                    </td>
-                </tr>
-            }
-        </tbody>
+  <div class=" w-full  rounded-lg p-6  bg-white max-h-[60vh] overflow-scroll">
+    <table class="  min-w-full   ">
+      <thead>
+        <tr>
+          <th class="py-2 border-b">ID</th>
+          <th class="py-2 border-b">Name</th>
+          <th class="py-2 border-b">category</th>
+          <th class="py-2 border-b">imageUrl</th>
+          <th class="py-2 border-b">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (item of store.posts;track item.id){
+        <tr>
+          <td class="py-2 border-b">{{ item.id }}</td>
+          <td class="py-2 border-b">{{ item.name }}</td>
+          <td class="py-2 border-b">
+            {{ store.getCategoryName(item.categoryId) }}
+          </td>
+          <td class="py-2 border-b ">
+            <img class="w-[100px] h-[100px] object-cover" src="{{ item.imageUrl }}" alt="{{ item.imageUrl }}" />
+          </td>
+  
+          <td class="py-2 border-b">
+            <button
+              (click)="onEdit(item)"
+              class="btn bg-yellow-500 text-white px-2 py-1 rounded-md cursor-pointer hover:bg-yellow-600 transition duration-200 mr-2"
+            >
+            <i class="fa-regular fa-pen-to-square"></i>
+            </button>
+            <button
+              (click)="onDelete(item.id)"
+              class="btn bg-red-500 text-white px-2 py-1 rounded-md cursor-pointer hover:bg-red-600 transition duration-200"
+            >
+            <i class="fa-solid fa-trash"></i>
+            </button>
+          </td>
+        </tr>
+        }
+      </tbody>
     </table>
+  </div>
+
+
+
+</div>
 </div>

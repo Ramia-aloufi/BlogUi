@@ -1,12 +1,12 @@
-<div class="max-w-[400px] shadow-sm p-4 rounded-sm">
+<div class="  shadow-sm cursor-pointer  rounded-sm"   >
 <div class="card-img"></div>
-<div class="card-body">
-    <small class="text-red-400 text-center ">{{post.categoryId}}</small>
-    <small class="text-green-400 text-center ml-3">Featured</small>
-    <small class="text-blue-400 text-center ml-3">Views - 100</small>
-    <h1 class="mt-2 font-bold">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Distinctio, aliquid?</h1>
-    <p class="font-light">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Mollitia accusamus fugit ad repellat asperiores adipisci corrupti eaque dolor sapiente voluptatibus!</p>
-    <small class="text-yellow-400 text-center">Last Update 2024-06-22</small>
+<div class="card-body"  >
+    <img class="h-[200px] object-cover w-full" src="{{post.imageUrl}}" alt="">
+    <div class="">
+    <small class="text-red-400 text-center ">{{store.getCategoryName(post.categoryId)}}</small>
+    <h1 class="font-bold">{{post.name}}</h1>
+    <small class="text-[#bbb] text-center text-xs font-light"> {{store.dateFormat(post.createdAt)}}</small>
+</div>
 
 </div>
 </div>

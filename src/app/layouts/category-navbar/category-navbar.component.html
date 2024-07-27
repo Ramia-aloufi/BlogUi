@@ -1,12 +1,12 @@
 <nav>
-    <div class="bg-[#eeeeee50] p-3">
+    <div class="bg-[#eeeeee50] p-3 py-5 mb-3">
         <div class="flex justify-center ">
             <ul class="flex gap-10">
-                <li><a href="#">all</a></li>
+                <li><a class="cursor-pointer" (click)="reset()">all</a></li>
 
                 @if(store.categories){
                 @for(item of store.categories ;track item.id){
-                    <li><a routerLink ="/auth" class="cursor-pointer">{{item.name}}</a></li>
+                    <li><a (click)="filterPost(item.id)" class="cursor-pointer">{{item.name}}</a></li>
                 }
             }
             </ul>

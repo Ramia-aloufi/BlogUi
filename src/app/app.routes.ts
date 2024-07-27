@@ -10,11 +10,12 @@ import { PostsComponent } from './dashboard/posts/posts.component';
 import { UsersComponent } from './dashboard/users/users.component';
 import { AuthComponent } from './pages/auth/auth.component';
 import { NgModule } from '@angular/core';
+import { PostFormComponent } from './dashboard/post-form/post-form.component';
 
 export const routes: Routes = [
     {path:'',component:HomeComponent},
     {path:'category',component:SingleCategoryComponent},
-    {path:'post',component:SinglePostComponent},
+    {path:'post/:id',component:SinglePostComponent},
     {path:'about',component:HomeComponent},
     {path:'terms-conditions',component:TermsAndConditionComponent},
     {path:'contact',component:ContactUsComponent},
@@ -25,6 +26,7 @@ export const routes: Routes = [
     {path:'dashboard',component:DashboardComponent },
     {path:'dashboard/categories',component:CategoriesComponent},
     {path:'dashboard/posts',component:PostsComponent},
+    {path:'dashboard/posts/new',component:PostFormComponent},
     {path:'dashboard/users',component:UsersComponent},
 
 

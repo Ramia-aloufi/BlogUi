@@ -1,26 +1,34 @@
 
+<div class="grid grid-cols-[1fr,6fr] max-h-[80vh] overflow-hidden">
+    <app-sidebar></app-sidebar>
 
-<div class="grid justify-center p-4">
-    <div class="w-full max-w-md bg-white shadow-md rounded-lg p-6 mb-6">
-        <form #categoryForm="ngForm" (ngSubmit)="onSubmit(categoryForm)" class="flex space-x-3">
-            <input 
-                type="text" 
-                name="category" 
-                placeholder="Add new category" 
-                ngModel 
-                [ngModel]="editCategory?.name || ''"
-                required 
-                class="border border-gray-300 rounded-md px-4 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-400">
-            <input 
-                type="submit" 
-                class="btn bg-blue-500 text-white px-4 py-2 rounded-md cursor-pointer hover:bg-blue-600 transition duration-200" 
-                [value]="editMode ? 'Update' : 'Add'">
-                @if(editMode){
-            <button  type="button" (click)="onCancelEdit()" class="btn bg-red-500 text-white px-4 py-2 rounded-md cursor-pointer hover:bg-red-600 transition duration-200">Cancel</button>
-                }
-        </form>
+<div class="px-4">
+    <div class="w-full flex justify-between bg-white  rounded-lg p-6 mb-6">
+        <h3>{{store.categories?.length}}Category</h3>
+        @if (!add) {
+          <button (click)="onAdd()" class="py-2 px-4 bg-cyan-950 text-white rounded-md ">New <i class="fa-regular fa-square-plus"></i></button>
+        }@else{
+            <form #categoryForm="ngForm" (ngSubmit)="onSubmit(categoryForm)" class="flex space-x-3">
+                <input 
+                    type="text" 
+                    name="category" 
+                    placeholder="Add new category" 
+                    ngModel 
+                    [ngModel]="editCategory?.name || ''"
+                    required 
+                    class="border border-gray-300 rounded-md px-4 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-400">
+                <input 
+                    type="submit" 
+                    class="btn bg-blue-500 text-white px-4 py-2 rounded-md cursor-pointer hover:bg-blue-600 transition duration-200" 
+                    [value]="editMode ? 'Update' : 'Add'">
+                   
+                <button  type="button" (click)="onCancelEdit()" class="btn bg-red-500 text-white px-4 py-2 rounded-md cursor-pointer hover:bg-red-600 transition duration-200">Cancel</button>
+                    
+            </form>
+        }
+
     </div>
-    <div class="w-full max-w-2xl bg-white shadow-md rounded-lg p-6">
+    <div class="w-full rounded-lg p-6  bg-white max-h-[60vh] overflow-scroll text-center">
         <table class="min-w-full bg-white">
             <thead>
                 <tr>
@@ -35,13 +43,15 @@
                         <td class="py-2 border-b">{{item.id}}</td>
                         <td class="py-2 border-b">{{item.name}}</td>
                         <td class="py-2 border-b">
-                            <button (click)="onEdit(item)" class="btn bg-yellow-500 text-white px-2 py-1 rounded-md cursor-pointer hover:bg-yellow-600 transition duration-200">Edit</button>
-                            <button (click)="onDelete(item.id)" class="btn bg-red-500 text-white px-2 py-1 rounded-md cursor-pointer hover:bg-red-600 transition duration-200">Delete</button>
+                            <button (click)="onEdit(item)" class="btn bg-yellow-500 text-white px-2 py-1 rounded-md cursor-pointer hover:bg-yellow-600 transition duration-200 mr-2">            <i class="fa-regular fa-pen-to-square"></i>
+                            </button>
+                            <button (click)="onDelete(item.id)" class="btn bg-red-500 text-white px-2 py-1 rounded-md cursor-pointer hover:bg-red-600 transition duration-200"><i class="fa-solid fa-trash"></i></button>
                         </td>
                     </tr>
                 }
             </tbody>
         </table>
     </div>
+</div>
 </div>
 

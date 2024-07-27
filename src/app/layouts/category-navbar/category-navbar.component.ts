@@ -15,5 +15,11 @@ export class CategoryNavbarComponent  {
 
   constructor(protected store: ApiStoreService) { 
   }
+  filterPost(id:number){
+    this.store.filterByPost(id)
+  }
+  reset(){
+    this.store.resetFilterPosts();
+  }
 
 }

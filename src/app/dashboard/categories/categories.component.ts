@@ -5,15 +5,17 @@ import { ApiService } from '../../api/api.service';
 import { APIResponse } from '../../model/response';
 import { Category } from '../../model/category';
 import { ApiStoreService } from '../../api/api.store.service';
+import { SidebarComponent } from "../sidebar/sidebar.component";
 @Component({
   selector: 'app-categories',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule, SidebarComponent],
   templateUrl: './categories.component.html',
   styleUrl: './categories.component.css',
 })
 export class CategoriesComponent {
   editMode: boolean = false;
+  add:boolean = false;
   editCategory: any = null;
 
   constructor(protected store:ApiStoreService) {}
@@ -23,6 +25,8 @@ export class CategoriesComponent {
   onEdit(category: any): void {
     this.editMode = true;
     this.editCategory = category;
+    this.add = true;
+
   }
   onDelete(id: number): void {
     this.store.deleteCategory(id)
@@ -30,6 +34,8 @@ export class CategoriesComponent {
   onCancelEdit(): void {
     this.editMode = false;
     this.editCategory = null;
+    this.add = false;
+
   }
   onSubmit(form: NgForm): void {
     if (form.valid) {
@@ -43,6 +49,10 @@ export class CategoriesComponent {
         this.store.SubmitCategory(newCategory)
       }
       form.reset();
+      this.add = false;
     }
+  }
+  onAdd(){
+    this.add = true;
   }
 }

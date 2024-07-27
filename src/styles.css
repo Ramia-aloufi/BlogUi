@@ -1,9 +1,58 @@
 /* You can add global styles to this file, and also import other style files */
-
 @import 'ngx-toastr/toastr';
-
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+.editor img{
+    height: 300px !important; 
+    width: 50vw !important;
+    object-fit: fill;
+}
+.editor h1{
+    font-size: 3rem;
+}
+.editor h2{
+    font-size: 2rem;
+}
+pre {
+    background-color: #f5f5f5;
+    padding: 10px;
+    border-radius: 5px;
+    overflow-x: auto;
+  }
+  
+  code {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 14px;
+  }
+
+
+  
+
+  
+  h1 {
+    font-size: 2em;
+  }
+  
+  h2 {
+    font-size: 1.75em;
+  }
+  
+  h3 {
+    font-size: 1.5em;
+  }
+  
+  h4 {
+    font-size: 1.25em;
+  }
+  
+  h5 {
+    font-size: 1em;
+  }
+  
+  h6 {
+    font-size: 0.875em;
+  }
+  
+  

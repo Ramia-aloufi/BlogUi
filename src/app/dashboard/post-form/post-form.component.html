@@ -1,0 +1,69 @@
+<div class="grid grid-cols-[1fr,6fr] max-h-[79vh] overflow-hidden ">
+    <app-sidebar></app-sidebar>
+    <div class="w-full shadow-md rounded-lg p-6  bg-white ">
+      <h1>Added New Post</h1>
+      <form
+[formGroup]="postForm"
+(ngSubmit)="onSubmit()"
+class=" bg-white  rounded-lg p-6 mb-6 grid space-y-3 max-h-[60vh] overflow-scroll"
+>
+<div>
+  <label for="name">Name</label>
+  <input
+    id="name"
+    formControlName="name"
+    class="border border-gray-300 rounded-md px-4 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-400"
+  />
+  @if(postForm.get('name')?.invalid && postForm.get('name')?.touched){
+  <div>Name is required.</div>
+  }
+</div>
+
+<div  >
+  <label for="content">Content</label>
+    <ngx-editor-menu [editor]="editor" [toolbar]="toolbar"> </ngx-editor-menu>
+   <div class="overflow-scroll max-h-[400px]">
+    <ngx-editor   [editor]="editor" formControlName="content" [disabled]="false" [placeholder]="'Type here...'"   ></ngx-editor>
+  </div>
+  @if(postForm.get('content')?.invalid && postForm.get('content')?.touched){
+  <div>Content is required.</div>
+  }
+</div>
+
+<div>
+  <label for="categoryId">Category</label>
+  <select id="categoryId" formControlName="categoryId">
+    @for (category of store.categories; track category.id) {
+    <option [value]="category.id">{{ category.name }}</option>
+    }
+  </select>
+  @if(postForm.get('categoryId')?.invalid &&
+  postForm.get('categoryId')?.touched){
+  <div>Category is required.</div>
+  }
+</div>
+
+<div >
+  <label for="imageURL">Image URL</label>
+  <input
+    id="imageURL"
+    formControlName="imageURL"
+    class="border border-gray-300 rounded-md px-4 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-400"
+  />
+
+  @if(postForm.get('imageURL')?.invalid && postForm.get('imageURL')?.touched){
+  <div>Image URL is required.</div>
+  }
+</div>
+
+<button
+  type="submit"
+  [disabled]="postForm.invalid"
+  class="btn bg-blue-500 text-white px-4 py-2 rounded-md cursor-pointer hover:bg-blue-600 transition duration-200"
+>
+  Submit
+</button>
+</form>
+    </div>
+
+</div>
