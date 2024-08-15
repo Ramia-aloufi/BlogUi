@@ -1,7 +1,7 @@
-<div class="w-full">
+<div class="w-full mt-[65px]">
     <app-category-navbar></app-category-navbar>
     <div class="grid justify-center items-center">
-        <div class="grid lg:grid-cols-3 sm:grid-cols-1 md:grid-cols-2 w-[80vw] gap-5 px-5 justify-center items-center">
+        <div class="grid lg:grid-cols-3 sm:grid-cols-1 md:grid-cols-2 w-[80vw] gap-5 px-5 justify-center items-center mt-[70px] ">
             @if(store.posts){
             @for (item of store.posts; track $index) {
             <app-post-card routerLink="/post/{{ item.id }}" [post]="item"></app-post-card>
