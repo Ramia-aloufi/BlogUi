@@ -16,10 +16,9 @@ export class ApiService {
   get<T>(endpoint:string,id:any){
     return this.apiService.Get<T>(this.apiUrl+endpoint+'/'+id)
   }
-  getAll<T>(endpoint:string){
-    return this.apiService.GetAll<T>(this.apiUrl+endpoint)
+  getAll<T>(endpoint:string,aa:{pageNumber:number,pageSize:number}){
+    return this.apiService.GetAll<T>(this.apiUrl+endpoint+'?pageNumber=' + aa.pageNumber+'&pageSize='+aa.pageSize)
   }
-
   post<T>(endpoint:string,body?:any){
     return this.apiService.Post<T>(this.apiUrl+endpoint,body)
   }

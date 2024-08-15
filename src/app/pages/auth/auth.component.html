@@ -1,45 +1,65 @@
-
+<div class="flex justify-center items-center min-h-[79vh] text-[#777]  ">
   @if(isLogin){
-  <div class="grid justify-center items-center" >
+  <div class="max-w-[400px] bg-white p-6 rounded-md" >
     <h1 class="font-semibold text-3xl mb-3">Login</h1>
-    <form (ngSubmit)="onLogin()" class="space-y-2 font-semibold text-sm text-[#333]">
+    <form [formGroup]="loginForm" (ngSubmit)="onLogin()" class="space-y-2 font-semibold text-sm ">
       <div>
         <label for="loginEmail">Email:</label>
-        <input type="email" class="border rounded-md p-2 w-full" id="loginEmail" (ngModel)="loginEmail" name="loginEmail" required>
+        <input type="email" class="border rounded-md p-2 w-full" id="loginEmail" formControlName="email"  name="loginEmail" required>
+        @if(loginForm.get('email')?.invalid && loginForm.get('email')?.touched){
+          <div>name is required.</div>
+        }
       </div>
       <div>
         <label for="loginPassword">Password:</label>
-        <input type="password" class="border rounded-md p-2 w-full" id="loginPassword" (ngModel)="loginPassword" name="loginPassword" required>
+        <input type="password" class="border rounded-md p-2 w-full" id="loginPassword" formControlName="password"  name="loginPassword" required>
+        @if(loginForm.get('password')?.invalid && loginForm.get('password')?.touched){
+          <div>name is required.</div>
+        }
       </div>
-      <button type="submit" class="btn bg-slate-400 py-2 px-4 rounded-sm w-full">Login</button>
+      <button type="submit" class="btn bg-[#4a4a81] text-white py-2 px-4 rounded-sm w-full">Login</button>
     </form>
-    <p class="text-sm text-[#333] mt-2">Don't have an account? <button (click)="showSignup()">Sign up here</button></p>
+    <p class="text-xs font-light text-[#666] mt-2">Don't have an account? <button (click)="showSignup()">Sign up here</button></p>
 
   </div>
 }
 @else{
-  <div class="grid justify-center items-center  ">
+  <div class="max-w-[400px] bg-white p-6 rounded-md ">
     <h1 class="font-semibold text-3xl mb-3">Signup</h1>
-    <form (ngSubmit)="onSignup()" class="space-y-2 font-semibold text-sm text-[#333]">
+    <form [formGroup]="signUpForm" (ngSubmit)="onSignup()" class="space-y-2 font-semibold text-sm ">
       <div>
         <label for="signupName">Name:</label>
-        <input type="text" id="signupName" placeholder="userName" class="border rounded-md p-2 w-full" (ngModel)="signupName" name="signupName" required>
+        <input type="text" id="signupName" placeholder="userName" class="border rounded-md p-2 w-full" formControlName="name" name="signupName" required>
+        @if(signUpForm.get('name')?.invalid && signUpForm.get('name')?.touched){
+          <div>name is required.</div>
+        }
       </div>
       <div>
         <label for="signupEmail">Email:</label>
-        <input type="email" id="signupEmail" placeholder="user@example.com" class="border rounded-md p-2 w-full" (ngModel)="signupEmail" name="signupEmail" required>
+        <input type="email" id="signupEmail" placeholder="user@example.com" class="border rounded-md p-2 w-full"formControlName="email"
+        name="signupEmail" required>
+        @if(signUpForm.get('email')?.invalid && signUpForm.get('email')?.touched){
+          <div>email is required.</div>
+        }
       </div>
       <div>
         <label for="signupPassword">Password:</label>
-        <input type="password" id="signupPassword" class="border rounded-md p-2 w-full" (ngModel)="signupPassword" name="signupPassword" required>
+        <input type="password" id="signupPassword" class="border rounded-md p-2 w-full" formControlName="password" name="signupPassword" required>
+        @if(signUpForm.get('password')?.invalid && signUpForm.get('password')?.touched){
+          <div>password is required.</div>
+        }
       </div>
       <div>
         <label for="signupConfirmPassword">Confirm Password:</label>
-        <input type="password" id="signupConfirmPassword" class="border rounded-md p-2 w-full" (ngModel)="signupConfirmPassword" name="signupConfirmPassword" required>
+        <input type="password" id="signupConfirmPassword" class="border rounded-md p-2 w-full" formControlName="confirmPassword" name="signupConfirmPassword" required>
+        @if(signUpForm.get('confirmPassword')?.invalid && signUpForm.get('confirmPassword')?.touched){
+          <div>confirmPassword is required.</div>
+        }
       </div>
-      <button type="submit" class="btn bg-slate-400 py-2 px-4 rounded-sm w-full">Signup</button>
+      <button type="submit" class="btn bg-[#4a4a81] text-white py-2 px-4 rounded-sm w-full">Signup</button>
     </form>
-    <p class="text-sm text-[#333] mt-2">Already have an account? <button (click)="showLogin()">Log in here</button></p>
+    <p class="text-xs font-light text-[#666] mt-2">Already have an account? <button (click)="showLogin()">Log in here</button></p>
   </div>
 }
+</div>
   

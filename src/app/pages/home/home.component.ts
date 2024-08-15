@@ -17,7 +17,8 @@ import { CategoryNavbarComponent } from "../../layouts/category-navbar/category-
 })
 export class HomeComponent {
 
-  constructor(protected store: ApiStoreService) {}
+  constructor(protected store: ApiStoreService) {
 
+  }
 
 }

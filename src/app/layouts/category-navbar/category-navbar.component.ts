@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { ApiService } from '../../api/api.service';
-import { Category } from '../../model/category';
 import { ApiStoreService } from '../../api/api.store.service';
 
 @Component({
@@ -12,14 +10,23 @@ import { ApiStoreService } from '../../api/api.store.service';
   styleUrl: './category-navbar.component.css'
 })
 export class CategoryNavbarComponent  {
-
+  selectedCategoryId?:number 
   constructor(protected store: ApiStoreService) { 
   }
   filterPost(id:number){
+    this.selectedCategoryId = id;
     this.store.filterByPost(id)
   }
   reset(){
+    this.selectedCategoryId = undefined
     this.store.resetFilterPosts();
+  }
+  getColor(id:number){
+    if(id == this.selectedCategoryId){
+      return 'text-[#4a4a81]'
+    }else{
+      return 'text-[#666]'
+    }
   }
 
 }

@@ -9,6 +9,7 @@ import { AuthComponent } from './pages/auth/auth.component';
 import { CommonModule } from '@angular/common';
 import { ApiStoreService } from './api/api.store.service';
 import { ApiService } from './api/api.service';
+import { AuthService } from './service/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -21,10 +22,11 @@ import { ApiService } from './api/api.service';
 })
 
 export class AppComponent implements OnInit {
-  constructor(private store: ApiStoreService) {}
+  constructor(private store: ApiStoreService , private authService: AuthService) {}
 
   ngOnInit() {
     this.store.loadCategories()
+    this.authService.getToken()
   }
   title = 'blog_frontend';
 }

@@ -1,11 +1,13 @@
-<form  action="" method="post">
-    <div class="form-group">
-    <label for="">Name</label>
-    <input type="text" name="" id="">
-</div>
-<div class="form-group">
-    <label for="">Comment</label>
-    <input type="text" name="" id="">
-</div>
-<input class="btn" type="submit" value="send">
+<form #commentForm="ngForm" (ngSubmit)="addComment(commentForm)" class="flex gap-x-3">
+  <input
+  placeholder="Write a comment..."
+    ngModel
+    class="border border-gray-300 rounded-md px-4 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-400"
+    type="text"
+    name="comment"
+    id=""
+  />
+  <button
+    class="btn bg-[#4a4a81] text-white px-4 py-2 rounded-md cursor-pointer  transition duration-200"
+    type="submit">add</button>
 </form>

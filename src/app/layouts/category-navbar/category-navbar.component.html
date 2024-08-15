@@ -1,17 +1,19 @@
 <nav>
-    <div class="bg-[#eeeeee50] p-3 py-5 mb-3">
-        <div class="flex justify-center ">
-            <ul class="flex gap-10">
-                <li><a class="cursor-pointer" (click)="reset()">all</a></li>
-
-                @if(store.categories){
-                @for(item of store.categories ;track item.id){
-                    <li><a (click)="filterPost(item.id)" class="cursor-pointer">{{item.name}}</a></li>
-                }
-            }
-            </ul>
-        </div>
-
+  <div class="bg-[#efefef] p-3 py-5 mb-3">
+    <div class="flex justify-center">
+      <ul class="flex gap-10">
+        @if(store.categories){
+        <li><a class="cursor-pointer" (click)="reset()">all</a></li>
+        @for(item of store.categories ;track item.id){
+        <li>
+          <a
+            (click)="filterPost(item.id)"
+            class="{{getColor(item.id)}} cursor-pointer hover:text-[#777]"
+            >{{ item.name }}</a
+          >
+        </li>
+        } }
+      </ul>
     </div>
-
+  </div>
 </nav>

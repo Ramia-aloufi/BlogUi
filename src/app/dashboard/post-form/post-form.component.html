@@ -23,7 +23,7 @@ class=" bg-white  rounded-lg p-6 mb-6 grid space-y-3 max-h-[60vh] overflow-scrol
   <label for="content">Content</label>
     <ngx-editor-menu [editor]="editor" [toolbar]="toolbar"> </ngx-editor-menu>
    <div class="overflow-scroll max-h-[400px]">
-    <ngx-editor   [editor]="editor" formControlName="content" [disabled]="false" [placeholder]="'Type here...'"   ></ngx-editor>
+    <ngx-editor   [editor]="editor" formControlName="content" [placeholder]="'Type here...'"   ></ngx-editor>
   </div>
   @if(postForm.get('content')?.invalid && postForm.get('content')?.touched){
   <div>Content is required.</div>
@@ -44,14 +44,14 @@ class=" bg-white  rounded-lg p-6 mb-6 grid space-y-3 max-h-[60vh] overflow-scrol
 </div>
 
 <div >
-  <label for="imageURL">Image URL</label>
+  <label for="imageUrl">Image URL</label>
   <input
-    id="imageURL"
-    formControlName="imageURL"
+    id="imageUrl"
+    formControlName="imageUrl"
     class="border border-gray-300 rounded-md px-4 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-400"
   />
 
-  @if(postForm.get('imageURL')?.invalid && postForm.get('imageURL')?.touched){
+  @if(postForm.get('imageUrl')?.invalid && postForm.get('imageUrl')?.touched){
   <div>Image URL is required.</div>
   }
 </div>

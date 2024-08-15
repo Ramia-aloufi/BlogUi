@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { IApiBaseActions, ParamsType } from './iapi-base-actions';
-import { catchError, map, Observable, tap, throwError } from 'rxjs';
-import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
+import {  map } from 'rxjs';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr';
 import { APIResponse } from '../model/response';
 
@@ -15,7 +15,7 @@ export class ApiHandlerService implements IApiBaseActions {
   Get<T>(url: string, params?: ParamsType) {
     return this.httpClient
       .get<APIResponse<T>>(url, {params: this.createParams(params)})
-      .pipe(map((x) => this.HandleResponse<T>(x)));
+      .pipe(map((x) => {return x.data}));
 
   }
 
@@ -27,7 +27,7 @@ export class ApiHandlerService implements IApiBaseActions {
 
   Post<T>(url: string, data: any, params?: ParamsType) {
     return this.httpClient
-      .post<APIResponse<T>>(url, data, {params: this.createParams(params)})     
+      .post<APIResponse<T>>(url, data, {params: this.createParams(params) })     
        .pipe(map((x) => this.HandleResponse<T>(x)));
 
   }

@@ -1,11 +1,18 @@
-<header class="w-full h-24 flex justify-between items-center px-6 bg-gray-800 text-white">
+<header class="w-full h-20 flex justify-between items-center px-6 bg-[#4a4a81] text-white">
 
         <div class="text-xl font-bold">
-            <a href="#" class="hover:text-gray-300">Ramia Aloufi</a>
+            <a routerLink ="/" class="hover:text-[#ddd]">Ramia Aloufi</a>
         </div>
 
-        <nav class="space-x-4">
-            <a class="hover:text-gray-300 cursor-pointer" routerLink ="auth" > Login / SignUp </a>
+        <nav class="space-x-4 flex">
+            @if(!authService.getUserName()){
+            <a class="hover:text-[#ddd] cursor-pointer" routerLink ="auth" > Login / SignUp </a>
+            }@else {
+                <p>Welcome, {{ authService.getUserName() }}</p>
+                <a class="hover:text-gray-300 cursor-pointer" (click)="logOut()" > <i class="fa-solid fa-arrow-right-from-bracket"></i> </a>
+
+
+            }
         </nav>
 
     </header>

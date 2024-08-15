@@ -4,6 +4,8 @@ import { ApiService } from './api.service';
 import { ToastrService } from 'ngx-toastr';
 import { Category } from '../model/category';
 import { formatDate } from '@angular/common';
+import { IPagedResult } from '../model/Pagination';
+import { APIResponse } from '../model/response';
 
 @Injectable({
   providedIn: 'root',
@@ -13,25 +15,45 @@ export class ApiStoreService {
   postsAll: Post[] | null = [];
   singlePost: Post | undefined = undefined;
   categories: Category[] | null = [];
-  selectedPost :Post | null = null;
+  selectedPost: Post | null = null;
+
+  TotalRecords: number = 3;
+  PageNumber: number = 1;
+  PageSize: number = 0;
+  TotalPages?: number;
 
   constructor(private api: ApiService, private toastr: ToastrService) {}
 
-  loadPosts() {
-    this.api.getAll<Post[]>('post').subscribe({
-      next: (data: Post[]) => {
-        this.posts = data;
-        this.postsAll = data
-        console.log(this.posts);
-      },
-    });
+  loadPosts( ) {    
+    this.api
+      .getAll<IPagedResult<Post>>('post', {
+        pageNumber: 1,
+        pageSize: 0 ,
+      })
+      .subscribe({
+        next: (result) => {
+          this.postsAll = result.data;
+          this.posts = result.data;
+          this.PageNumber = result.pageNumber;
+          this.PageSize = result.pageSize;
+          this.TotalPages = result.totalPages;
+          this.TotalRecords = result.totalRecords;
+        },
+      });
+      
   }
 
+
   loadCategories(): void {
-    this.api.getAll<Category[]>('category').subscribe((data: Category[]) => {
-      this.categories = data;
-      this.loadPosts();
-    });
+    this.api
+      .getAll<IPagedResult<Category>>('category', {
+        pageNumber: 1,
+        pageSize: 0,
+      })
+      .subscribe((data) => {
+        this.categories = data.data;
+        this.loadPosts();
+      });
   }
 
   SubmitCategory(newCategory: any): void {
@@ -87,8 +109,10 @@ export class ApiStoreService {
       },
     });
   }
-  UpdatePost(editedCategory: Category) {
-    this.api.put('post', editedCategory).subscribe({
+  UpdatePost(editedPost: Post) {
+    console.log(editedPost);
+
+    this.api.put('post', editedPost).subscribe({
       next: (response: any) => {
         this.loadCategories();
       },
@@ -102,23 +126,23 @@ export class ApiStoreService {
     return category ? category.name : 'Unknown';
   }
   filterByPost(id: number) {
-   this.posts = this.postsAll?.filter((cat) => cat.categoryId === id) || this.posts
+    this.posts =
+      this.postsAll?.filter((cat) => cat.categoryId === id) || this.posts;
   }
-  dateFormat(date: Date ) {
+  dateFormat(date: Date) {
     return formatDate(date, 'yyyy-MMM', 'en_US');
   }
-  getSinglePost(id: number) {    
-    this.api.get<Post>('post',id).subscribe((res)=>{
-      this.singlePost = res
+  getSinglePost(id: number) {
+    this.api.get<Post>('post', id).subscribe((res) => {
+      this.singlePost = res;
       console.log(this.singlePost?.content);
-
-    })
+    });
   }
 
   resetFilterPosts() {
-    this.posts = this.postsAll
-   }
-   editPost(post:Post){
-    this.selectedPost = post
-   }
+    this.posts = this.postsAll;
+  }
+  editPost(post: Post) {
+    this.selectedPost = post;
+  }
 }

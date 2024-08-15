@@ -25,7 +25,6 @@ showForm  = false
   }
 
   onEdit(post: Post): void {
-    console.log(post);
     this.store.editPost(post)
     this.router.navigate(['/dashboard/posts/new']);
 

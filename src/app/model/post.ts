@@ -1,3 +1,5 @@
+import { Comment } from "./Comment";
+
 export interface Post {
     id:number
     name: string;
@@ -6,8 +8,6 @@ export interface Post {
     imageUrl: string;
     updatedAt:Date;
     createdAt:Date;
+    comments:Comment[] | null
   }
-
- type IsPost<T> = T extends Post ? true : false;
-
   

@@ -36,28 +36,21 @@ export class PostFormComponent {
       name: [this.post?.name || '', Validators.required],
       content: [this.post?.content || '', Validators.required],
       categoryId: [this.post?.categoryId || "", Validators.required],
-      imageURL: [this.post?.imageUrl || "", Validators.required]
+      imageUrl: [this.post?.imageUrl || "", Validators.required]
     });
     this.editor = new Editor();
-
-
   }
 
   onSubmit(): void {
     if (this.postForm.valid) {
       var form = this.postForm.value
-      console.log(form.content);
-      console.log(form);
-      
-      if(this.post){
-        Object.assign(this.post, form);
+      if(this.post){        
+        Object.assign(this.post, form);        
         this.store.UpdatePost(this.post)
-
       }else{
       this.store.SubmitPost(form);
       }
-      this.router.navigate(['/dashboard/posts/new']);
-
+      this.router.navigate(['/dashboard/posts']);
     }
   }
   ngOnDestroy(): void {

@@ -1,9 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
-import { ToastrService } from 'ngx-toastr';
-import { ApiService } from '../../api/api.service';
-import { APIResponse } from '../../model/response';
-import { Category } from '../../model/category';
 import { ApiStoreService } from '../../api/api.store.service';
 import { SidebarComponent } from "../sidebar/sidebar.component";
 @Component({

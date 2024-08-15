@@ -54,5 +54,11 @@ pre {
   h6 {
     font-size: 0.875em;
   }
+  .active{
+    background-color: blueviolet;
+  }
   
-  
+  body {
+    font-family: "Gothic A1", sans-serif;
+   
+  }

@@ -1,11 +1,10 @@
-
-    <div class=" w-full">
-        <app-category-navbar></app-category-navbar>
-
-        <div class="grid grid-cols-3  gap-5 px-5">
+<div class="w-full">
+    <app-category-navbar></app-category-navbar>
+    <div class="grid justify-center items-center">
+        <div class="grid grid-cols-3 w-[80vw] gap-5 px-5 justify-center items-center">
             @for (item of store.posts; track $index) {
-                <app-post-card  routerLink="/post/{{item.id}}"  [post]="item"></app-post-card>
+            <app-post-card routerLink="/post/{{ item.id }}" [post]="item"></app-post-card>
             }
         </div>
-
     </div>
+</div>

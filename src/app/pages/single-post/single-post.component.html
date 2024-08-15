@@ -1,34 +1,59 @@
-<div class="mt-6 flex items-center justify-center ">
+<div class="grid items-center justify-center">
   @if(store.singlePost){
-  <div class="w-[60vw]">
-    <h1 class="mt-2 font-bold my-3 text-4xl mb-2">
-      {{store.singlePost.name}}
-              </h1>
-    <div class="shadow-sm rounded-sm">
-      <div class="card-img">
-        <img src="{{store.singlePost.imageUrl}}" class="w-full h-[300px] object-cover" alt="">
-      </div>
-      <div class="card-body  p-4">
-        <small class="text-red-400 text-center">{{store.getCategoryName(store.singlePost.categoryId)}}</small>
-        <small class="text-green-400 text-center ml-3"></small>
-        <small class="text-blue-400 text-center ml-3">Views - 100</small>
+  <div class="flex py-6 text-sm text-[#888]">
+    <a routerLink="/">Home > </a>
+    <span> {{store.singlePost.name}}</span>
+  </div>
+  <div class="w-[60vw] bg-white px-3">
+    <div class=" flex gap-5 my-2 text-center items-center">
+      <small class="{{getColor(store.singlePost.categoryId)}} py-1 px-4 text-center">{{
+        store.getCategoryName(store.singlePost.categoryId)
+        }}</small>
+      <small class="text-[#aaa] text-center">{{
+        store.dateFormat(store.singlePost.createdAt)
+        }}</small>
+    </div>
+    <h1 class=" font-bold py-3  text-4xl mb-2 ">
+      {{ store.singlePost.name }}
+    </h1>
 
-        <div class="font-light editor"  [innerHTML]="store.singlePost.content">
-            
-        </div>
-        
-        <small class="text-yellow-400 text-center"
-          >{{store.dateFormat(store.singlePost.createdAt)}}</small
-        >
+    <div class="shadow-sm  rounded-sm">
+      <div class="card-img">
+        <img src="{{ store.singlePost.imageUrl }}" class="w-full h-[300px] object-cover" alt="" />
+      </div>
+      <div class="card-body p-4">
+
+
+        <div class="font-light editor leading-10 mt-3" [innerHTML]="store.singlePost.content"></div>
+
       </div>
     </div>
     <div class="shadow-sm p-4 rounded-sm">
+      @if(isLoggedIn){
       <app-comment-form></app-comment-form>
+      }@else {
+      <p>
+        Log in to add a comment.
+        <a class="cursor-pointer text-black" routerLink="/auth">login here</a>
+      </p>
+      }
+      <i (click)="showComments()" class="fa-regular fa-comment mr-2"></i>
+      <span class="mr-2">{{store.singlePost.comments?.length}}</span>
+      @if(show){
+      <i class="fa-solid fa-sort-up "></i>
+      @if (store.singlePost.comments) {
       <app-comment-list></app-comment-list>
+      }@else {
+      <h4>No comments yet. Be the first to comment!</h4>
+      }
+      }@else {
+      <i class="fa-solid fa-sort-down"></i>
+      }
     </div>
   </div>
-}@else {
+  }@else {
   <h1>loading</h1>
-}
+  <ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="medium" color="#fff" type="ball-spin-clockwise"></ngx-spinner>
 
+  }
 </div>

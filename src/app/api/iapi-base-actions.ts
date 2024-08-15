@@ -3,7 +3,7 @@ import { Observable } from "rxjs";
 export type ParamsType = { id: number }
 
 export interface IApiBaseActions {
-    Get(url: string, params?: ParamsType): Observable<any>;
+  Get(url: string, params?: ParamsType): Observable<any>;
 
   GetAll(url: string, params?: ParamsType): Observable<any>;
 
