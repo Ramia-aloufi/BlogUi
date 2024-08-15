@@ -1,12 +1,10 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { PostCardComponent } from '../../layouts/post-card/post-card.component';
 import { CommentFormComponent } from '../../comments/comment-form/comment-form.component';
 import { CommentListComponent } from '../../comments/comment-list/comment-list.component';
 import { Post } from '../../model/post';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { ApiStoreService } from '../../api/api.store.service';
-import { switchMap } from 'rxjs';
-import { ApiService } from '../../api/api.service';
 import { AuthService } from '../../service/auth.service';
 import { bg, color } from '../../model/Color';
 import { NgxSpinnerModule, NgxSpinnerService } from 'ngx-spinner';
@@ -17,6 +15,8 @@ import { NgxSpinnerModule, NgxSpinnerService } from 'ngx-spinner';
   imports: [PostCardComponent ,CommentFormComponent, CommentListComponent,RouterModule,NgxSpinnerModule],
   templateUrl: './single-post.component.html',
   styleUrl: './single-post.component.css'})
+
+
 export class SinglePostComponent implements OnInit {
   post: Post| undefined;
   isLoggedIn: boolean = false;
@@ -30,7 +30,9 @@ export class SinglePostComponent implements OnInit {
       const id:number = Number(params['id'])
       console.log('Test ID:',Number(id));
        this.store.getSinglePost(id)
-       this.spinner.hide();
+       if(this.store.singlePost){
+        this.spinner.hide();
+       } 
 
        
       

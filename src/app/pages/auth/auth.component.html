@@ -7,14 +7,14 @@
         <label for="loginEmail">Email:</label>
         <input type="email" class="border rounded-md p-2 w-full" id="loginEmail" formControlName="email"  name="loginEmail" required>
         @if(loginForm.get('email')?.invalid && loginForm.get('email')?.touched){
-          <div>name is required.</div>
+          <div class="text-[10px] text-red-300">email is required.</div>
         }
       </div>
       <div>
         <label for="loginPassword">Password:</label>
         <input type="password" class="border rounded-md p-2 w-full" id="loginPassword" formControlName="password"  name="loginPassword" required>
         @if(loginForm.get('password')?.invalid && loginForm.get('password')?.touched){
-          <div>name is required.</div>
+          <div class="text-[10px] text-red-300">password is required.</div>
         }
       </div>
       <button type="submit" class="btn bg-[#4a4a81] text-white py-2 px-4 rounded-sm w-full">Login</button>
@@ -31,7 +31,7 @@
         <label for="signupName">Name:</label>
         <input type="text" id="signupName" placeholder="userName" class="border rounded-md p-2 w-full" formControlName="name" name="signupName" required>
         @if(signUpForm.get('name')?.invalid && signUpForm.get('name')?.touched){
-          <div>name is required.</div>
+          <div class="text-[10px] text-red-300">name is required.</div>
         }
       </div>
       <div>
@@ -39,21 +39,21 @@
         <input type="email" id="signupEmail" placeholder="user@example.com" class="border rounded-md p-2 w-full"formControlName="email"
         name="signupEmail" required>
         @if(signUpForm.get('email')?.invalid && signUpForm.get('email')?.touched){
-          <div>email is required.</div>
+          <div class="text-[10px] text-red-300">email is required.</div>
         }
       </div>
       <div>
         <label for="signupPassword">Password:</label>
         <input type="password" id="signupPassword" class="border rounded-md p-2 w-full" formControlName="password" name="signupPassword" required>
         @if(signUpForm.get('password')?.invalid && signUpForm.get('password')?.touched){
-          <div>password is required.</div>
+          <div class="text-[10px] text-red-300">password is required.</div>
         }
       </div>
       <div>
         <label for="signupConfirmPassword">Confirm Password:</label>
         <input type="password" id="signupConfirmPassword" class="border rounded-md p-2 w-full" formControlName="confirmPassword" name="signupConfirmPassword" required>
         @if(signUpForm.get('confirmPassword')?.invalid && signUpForm.get('confirmPassword')?.touched){
-          <div>confirmPassword is required.</div>
+          <div class="text-[10px] text-red-300">confirmPassword is required.</div>
         }
       </div>
       <button type="submit" class="btn bg-[#4a4a81] text-white py-2 px-4 rounded-sm w-full">Signup</button>

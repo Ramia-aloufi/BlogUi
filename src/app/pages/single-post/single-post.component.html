@@ -4,7 +4,7 @@
     <a routerLink="/">Home > </a>
     <span> {{store.singlePost.name}}</span>
   </div>
-  <div class="w-[60vw] bg-white px-3">
+  <div class="md:w-[60vw] w-[80vw] bg-white px-3">
     <div class=" flex gap-5 my-2 text-center items-center">
       <small class="{{getColor(store.singlePost.categoryId)}} py-1 px-4 text-center">{{
         store.getCategoryName(store.singlePost.categoryId)
@@ -52,8 +52,8 @@
     </div>
   </div>
   }@else {
-  <h1>loading</h1>
-  <ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="medium" color="#fff" type="ball-spin-clockwise"></ngx-spinner>
-
+  <ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="medium" color="#333" type="ball-spin-clockwise">
+    <p style="font-size: 20px; color: white">Loading...</p>
+  </ngx-spinner>
   }
 </div>

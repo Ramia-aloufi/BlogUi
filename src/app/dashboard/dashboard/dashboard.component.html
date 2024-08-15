@@ -1,7 +1,15 @@
 <div class="">
     <div class="grid grid-cols-[1fr,4fr] ">
          <app-sidebar></app-sidebar>
-        <div class="">
+        <div class="grid grid-cols-2 p-8">
+            <div class="shadow-sm h-[100px] place-content-center text-center">
+                <h4>Posts</h4>
+                <span>{{store.postsAll?.length}}</span>
+            </div>
+            <div class="shadow-sm h-[100px] place-content-center text-center">
+                <h4>Category</h4>
+                <span>{{store.categories?.length}}</span>
+            </div>
         </div>
 
     </div>
